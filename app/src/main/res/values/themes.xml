@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    <style name="Theme.MySplashScreen" parent="Theme.SplashScreen">-->
+
+<!--        <item name="windowSplashScreenBackground">@color/splash_bg</item>-->
+<!--&lt;!&ndash;        <item name="windowSplashScreenAnimatedIcon">@drawable/app_icon_t</item>&ndash;&gt;-->
+<!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
+<!--        <item name="postSplashScreenTheme">@style/Theme.TradingSignalsApp</item>-->
+
+<!--    </style>-->
+
+    <style name="Theme.TradingSignalsApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/splash_bg</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+    </style>
+</resources>
