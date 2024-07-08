@@ -38,6 +38,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -54,7 +55,8 @@ import com.devstudio.forexFusion.ui.theme.app_font
 import com.devstudio.forexFusion.ui.theme.blueLight
 import com.devstudio.forexFusion.ui.theme.greenLight
 import com.devstudio.forexFusion.ui.theme.redLight
-import com.devstudio.forexFusion.ui.Utils.Prefs
+import com.devstudio.forexFusion.ui.utils.Prefs
+import com.devstudio.forexFusion.ui.utils.Utils
 import kotlinx.coroutines.launch
 
 @Composable
@@ -66,6 +68,7 @@ fun DrawerScreen(
 ) {
 
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Column(
         modifier = modifier
@@ -117,23 +120,23 @@ fun DrawerScreen(
 
         Spacer(modifier = modifier.height(10.dp))
 
-        NotificationSwitchItem(itemText = "Notifications")
+//        NotificationSwitchItem(itemText = "Notifications")
 
         DrawerItemWithIcon(
             itemText = "Feedback",
-            onClick = { /*TODO*/ },
+            onClick = { Utils.sendFeedback(context) },
             icon = Icons.Outlined.Feedback
         )
 
         DrawerItemWithIcon(
             itemText = "Rate Us",
-            onClick = { /*TODO*/ },
+            onClick = { Utils.openAppInPlayStore(context) },
             icon = Icons.Outlined.ThumbUp
         )
 
         DrawerItemWithIcon(
             itemText = "Contact Us",
-            onClick = { /*TODO*/ },
+            onClick = { Utils.openWhatsApp(context) },
             icon = Icons.Outlined.Whatsapp
         )
 

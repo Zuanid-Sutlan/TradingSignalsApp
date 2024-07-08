@@ -1,4 +1,4 @@
-package com.devstudio.forexFusion.ui.Utils
+package com.devstudio.forexFusion.ui.utils
 
 import android.preference.PreferenceManager
 import com.devstudio.forexFusion.AppClass

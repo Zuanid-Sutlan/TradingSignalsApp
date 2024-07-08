@@ -24,8 +24,8 @@ import com.devstudio.forexFusion.data.model.ResultSignal
 import com.devstudio.forexFusion.data.model.CryptoSignal
 import com.devstudio.forexFusion.data.model.ForexSignal
 import com.devstudio.forexFusion.data.repository.AuthRepository
-import com.devstudio.forexFusion.ui.Utils.NetworkUtils.ConnectivityObserver
-import com.devstudio.forexFusion.ui.Utils.Prefs
+import com.devstudio.forexFusion.ui.utils.networkUtils.ConnectivityObserver
+import com.devstudio.forexFusion.ui.utils.Prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions

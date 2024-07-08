@@ -60,10 +60,10 @@ fun ImageLoadFromUrl(url: String, modifier: Modifier = Modifier) {
 
             is AsyncImagePainter.State.Success -> {
                 // Do nothing if the image is loaded successfully
-                Image(
+                /*Image(
                     painter = painter,
                     contentDescription = null,
-                )
+                )*/
             }
 
             else -> {

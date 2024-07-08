@@ -237,7 +237,7 @@ private fun TakeProfitItemView(
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
             )
             Text(
-                text = "$pips pips",
+                text = pips,
                 color = color,
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
             )

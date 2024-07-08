@@ -37,7 +37,7 @@ fun ResultsScreen(viewModel: MainViewModel) {
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
-        TradingWarningMessage(text = "Al-Hamidullah !!")
+        TradingWarningMessage(text = "Al-Hamdulillah !!")
 
         LazyVerticalGrid(modifier = Modifier.padding(4.dp), columns = GridCells.Fixed(2)) {
             items(viewModel.results.value.reversed()) { item ->

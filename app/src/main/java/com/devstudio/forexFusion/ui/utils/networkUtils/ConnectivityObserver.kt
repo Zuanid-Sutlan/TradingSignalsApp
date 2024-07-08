@@ -1,4 +1,4 @@
-package com.devstudio.forexFusion.ui.Utils.NetworkUtils
+package com.devstudio.forexFusion.ui.utils.networkUtils
 
 import android.content.Context
 import android.net.ConnectivityManager

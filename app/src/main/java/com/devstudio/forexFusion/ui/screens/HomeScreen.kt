@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,34 +16,40 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.WarningAmber
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.devstudio.forexFusion.MainViewModel
+import com.devstudio.forexFusion.R
 import com.devstudio.forexFusion.data.model.CommunityLink
+import com.devstudio.forexFusion.data.model.MessageBar
 import com.devstudio.forexFusion.ui.theme.app_font
 import com.devstudio.forexFusion.ui.theme.blueDark
 import com.devstudio.forexFusion.ui.theme.blueLight
 import com.devstudio.forexFusion.ui.theme.darkCardBackground
 import com.devstudio.forexFusion.ui.theme.lightCardBackground
-import com.devstudio.forexFusion.ui.Utils.Prefs
+import com.devstudio.forexFusion.ui.utils.Prefs
 import com.devstudio.forexFusion.ui.component.ImageLoadFromUrl
 import com.devstudio.forexFusion.ui.component.ResultsItemView
 import com.devstudio.forexFusion.ui.navigation.ResultScreen
@@ -93,8 +98,58 @@ fun HomeScreen(
                 fontFamily = app_font
             )
 
-        }
+            val screenWidth = LocalConfiguration.current.screenWidthDp
+            val width = screenWidth / 2
 
+            Box(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .align(Alignment.CenterEnd)
+                    .width(width.dp)
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .padding(horizontal = 9.dp, vertical = 16.dp),
+                    painter = painterResource(id = R.drawable.ic_bitcoin),
+                    contentDescription = "bitcoin",
+                    tint = Color.Unspecified
+                )
+                Icon(
+                    modifier = Modifier
+                        .align(Alignment.TopEnd)
+//                        .size(48.dp)
+                        .padding(horizontal = 16.dp, vertical = 9.dp),
+                    painter = painterResource(id = R.drawable.ic_gold_oil),
+                    contentDescription = "gold",
+                    tint = Color.Unspecified
+                )
+                Icon(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(32.dp),
+                    painter = painterResource(id = R.drawable.ic_money),
+                    contentDescription = "money",
+                    tint = Color.Unspecified
+                )
+                Icon(
+                    modifier = Modifier
+                        .align(Alignment.BottomStart)
+                        .padding(35.dp),
+                    painter = painterResource(id = R.drawable.ic_eth),
+                    contentDescription = "ethereum",
+                    tint = Color.Unspecified
+                )
+                Icon(
+                    modifier = Modifier.align(Alignment.BottomEnd).padding(bottom = 8.dp),
+                    painter = painterResource(id = R.drawable.ic_solana),
+                    contentDescription = "solaria",
+                    tint = Color.Unspecified
+                )
+            }
+
+
+        }
         // results row view in the home page
 
         LazyColumn(
@@ -141,7 +196,7 @@ fun HomeScreen(
                                 .graphicsLayer {
                                     alpha = 0.8f
                                 },
-                            text = "View All",
+                            text = " View All ",
                             color = blueLight,
                             fontWeight = FontWeight.Bold,
                             fontSize = MaterialTheme.typography.labelLarge.fontSize,
@@ -154,9 +209,8 @@ fun HomeScreen(
 
 
             item {
-                LazyRow(reverseLayout = false) {
+                LazyRow(Modifier.fillMaxWidth()) {
                     items(viewModel.results.value.reversed().take(7)) {
-
                         ResultsItemView(results = it)
                     }
                 }
@@ -180,7 +234,7 @@ fun HomeScreen(
             }
 
             items(viewModel.communityLinks.value) {
-                CommunityItemUi(item = it)
+                CommunityItemUi(item = it, viewModel = viewModel)
             }
 
             item { Spacer(modifier = Modifier.height(10.dp)) }
@@ -193,7 +247,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun CommunityItemUi(item: CommunityLink) {
+fun CommunityItemUi(item: CommunityLink, viewModel: MainViewModel) {
     val context = LocalContext.current
     Row(
         modifier = Modifier
@@ -238,9 +292,20 @@ fun CommunityItemUi(item: CommunityLink) {
 
                     }
                 }*/
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(item.link)
-                context.startActivity(intent)
+                if (item.link.isNotEmpty() && item.link.contains("https://")) {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(item.link)
+                    context.startActivity(intent)
+                } else {
+                    viewModel.setUpSnackBar(
+                        true,
+                        MessageBar(
+                            "Invalid Link",
+                            Icons.Rounded.WarningAmber,
+                            Color.Red
+                        )
+                    )
+                }
             },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween

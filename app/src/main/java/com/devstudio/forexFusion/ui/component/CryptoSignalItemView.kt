@@ -90,7 +90,7 @@ fun CryptoSignalItemView(
 
                     Text(
                         modifier = Modifier.padding(start = 16.dp),
-                        text = item.pairName.uppercase(Locale.ROOT),
+                        text = item.pairName.uppercase(),
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font
@@ -196,20 +196,24 @@ fun CryptoSignalItemView(
                 )
 
                 // Take Profit 2
-                TakeProfitItemView(
-                    target = "Take Profit 2",
-                    price = item.takeProfit2,
-                    percent = item.percentProfit2,
-                    status = item.takeProfit2Status
-                )
+                if (item.takeProfit2.isNotEmpty()){
+                    TakeProfitItemView(
+                        target = "Take Profit 2",
+                        price = item.takeProfit2,
+                        percent = item.percentProfit2,
+                        status = item.takeProfit2Status
+                    )
+                }
 
                 // Take Profit 3
-                TakeProfitItemView(
-                    target = "Take Profit 3",
-                    price = item.takeProfit3,
-                    percent = item.percentProfit3,
-                    status = item.takeProfit3Status
-                )
+                if (item.takeProfit3.isNotEmpty()) {
+                    TakeProfitItemView(
+                        target = "Take Profit 3",
+                        price = item.takeProfit3,
+                        percent = item.percentProfit3,
+                        status = item.takeProfit3Status
+                    )
+                }
 
                 // stop lose
                 Text(
@@ -258,7 +262,7 @@ private fun TakeProfitItemView(target: String, price: String, percent: String, s
             fontFamily = app_font
         )
         Text(
-            text = "$percent%",
+            text = percent,
             color = color,
             fontSize = MaterialTheme.typography.titleMedium.fontSize,
             fontFamily = app_font

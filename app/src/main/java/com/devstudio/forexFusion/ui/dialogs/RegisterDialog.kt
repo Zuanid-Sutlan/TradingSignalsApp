@@ -1,4 +1,4 @@
-package com.devstudio.forexFusion.ui.Dialogs
+package com.devstudio.forexFusion.ui.dialogs
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -34,7 +34,7 @@ import com.devstudio.forexFusion.ui.theme.app_font
 import com.devstudio.forexFusion.ui.theme.blueLight
 import com.devstudio.forexFusion.ui.theme.greenLight
 import com.devstudio.forexFusion.ui.theme.redLight
-import com.devstudio.forexFusion.ui.Utils.Prefs
+import com.devstudio.forexFusion.ui.utils.Prefs
 import com.google.firebase.auth.FirebaseAuth
 import com.onesignal.OneSignal
 

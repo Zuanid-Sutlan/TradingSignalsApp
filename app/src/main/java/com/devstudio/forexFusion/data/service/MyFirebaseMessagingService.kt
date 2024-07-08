@@ -34,11 +34,11 @@ class MyFirebaseMessagingService: FirebaseMessagingService() {
 
 fun showNotification(context: Context, title: String, message: String) {
     val channelId = "default_channel_id"
-    val channelName = "New Signal Notification"
+    val channelName = "Signals Notifications"
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-        val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT).apply {
-            description = "Default Channel Description"
+        val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH).apply {
+            description = "Default Notification Channel"
         }
         val notificationManager: NotificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.createNotificationChannel(channel)
@@ -52,6 +52,7 @@ fun showNotification(context: Context, title: String, message: String) {
         .setContentTitle(title)
         .setContentText(message)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
+        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
         .build()
 
     with(NotificationManagerCompat.from(context)) {

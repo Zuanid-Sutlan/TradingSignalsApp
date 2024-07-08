@@ -34,8 +34,8 @@ import androidx.navigation.NavHostController
 import com.devstudio.forexFusion.MainViewModel
 import com.devstudio.forexFusion.R
 import com.devstudio.forexFusion.data.model.MessageBar
-import com.devstudio.forexFusion.ui.Dialogs.LoginDialog
-import com.devstudio.forexFusion.ui.Dialogs.RegisterDialog
+import com.devstudio.forexFusion.ui.dialogs.LoginDialog
+import com.devstudio.forexFusion.ui.dialogs.RegisterDialog
 import com.devstudio.forexFusion.ui.component.GoogleButton
 import com.devstudio.forexFusion.ui.component.CustomButton
 import com.devstudio.forexFusion.ui.navigation.HomeScreen
@@ -45,7 +45,7 @@ import com.devstudio.forexFusion.ui.theme.blueLight
 import com.devstudio.forexFusion.ui.theme.greenLight
 import com.devstudio.forexFusion.ui.theme.primaryGradient
 import com.devstudio.forexFusion.ui.theme.redLight
-import com.devstudio.forexFusion.ui.Utils.Prefs
+import com.devstudio.forexFusion.ui.utils.Prefs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 

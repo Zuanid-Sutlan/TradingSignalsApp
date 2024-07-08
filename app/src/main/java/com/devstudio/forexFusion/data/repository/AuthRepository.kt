@@ -1,6 +1,6 @@
 package com.devstudio.forexFusion.data.repository
 
-import com.devstudio.forexFusion.ui.Utils.Utils.isEmailValid
+import com.devstudio.forexFusion.ui.utils.Utils.isEmailValid
 import com.google.firebase.auth.FirebaseAuth
 import com.devstudio.forexFusion.data.model.enums.Result
 import kotlinx.coroutines.tasks.await
