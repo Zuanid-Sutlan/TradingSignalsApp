@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -15,7 +16,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CheckCircleOutline
 import androidx.compose.material.icons.rounded.ErrorOutline
@@ -25,6 +28,8 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -100,10 +105,19 @@ fun WelcomeScreen(viewModel: MainViewModel, navController: NavHostController) {
 
         // designing the background
         Image(
-            modifier = Modifier.align(Alignment.TopStart),
-            painter = painterResource(id = R.drawable.top_left_welcome),
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                //                .size(width = 220.dp, height = 160.dp)
+                .rotate(180f),
+            painter = painterResource(id = R.drawable.top_right_welcome),
             contentDescription = null
         )
+
+        /*Canvas(modifier = Modifier
+            .size(160.dp)
+            .align(Alignment.TopStart)) {
+            drawCircle(color = Color.White, radius = 1f)
+        }*/
 
         Image(
             modifier = Modifier.align(Alignment.BottomEnd),
@@ -113,14 +127,14 @@ fun WelcomeScreen(viewModel: MainViewModel, navController: NavHostController) {
 
 
         // welcome text
-        Text(
+        /*Text(
             modifier = Modifier.offset(30.dp, 50.dp),
             text = "Welcome",
             color = blueLight,
             fontSize = MaterialTheme.typography.headlineLarge.fontSize,
             fontWeight = FontWeight.Bold,
             fontFamily = app_font
-        )
+        )*/
 
         // buttons for signup and login and contact
         Column(
@@ -135,12 +149,13 @@ fun WelcomeScreen(viewModel: MainViewModel, navController: NavHostController) {
             // logo
             Image(
                 modifier = Modifier
-                    .size(220.dp),
-                painter = painterResource(id = R.drawable.app_icon),
+                    .size(220.dp)
+                    .wrapContentSize(),
+                painter = painterResource(id = R.drawable.ic_app_logo),
                 contentDescription = null
             )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
             CustomButton(
                 text = "REGISTER",

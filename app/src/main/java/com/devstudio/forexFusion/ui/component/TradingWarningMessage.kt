@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import com.devstudio.forexFusion.ui.theme.app_font
 
 @Composable
-fun TradingWarningMessage(text: String = "Trade at your own risk our app is not responsible of your profit/lose") {
+fun TradingWarningMessage(text: String = "Trade at your own risk our app is not responsible of your profit/loss") {
     Box(
         modifier = Modifier
             .fillMaxWidth()

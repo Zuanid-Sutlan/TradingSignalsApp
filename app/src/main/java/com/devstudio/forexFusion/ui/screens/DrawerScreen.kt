@@ -264,7 +264,7 @@ fun NotificationSwitchItem(
         ) {
             notificationChecked = it
             Prefs.notification = notificationChecked
-//            MainActivity.viewModel.setTheme(themeChecked) todo
+//            MainActivity.viewModel.setTheme(themeChecked)
         }
 
     }

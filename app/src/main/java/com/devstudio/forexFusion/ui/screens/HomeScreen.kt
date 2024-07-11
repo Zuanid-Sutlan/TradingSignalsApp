@@ -44,6 +44,7 @@ import com.devstudio.forexFusion.MainViewModel
 import com.devstudio.forexFusion.R
 import com.devstudio.forexFusion.data.model.CommunityLink
 import com.devstudio.forexFusion.data.model.MessageBar
+import com.devstudio.forexFusion.ui.component.BrokerLinkItemView
 import com.devstudio.forexFusion.ui.theme.app_font
 import com.devstudio.forexFusion.ui.theme.blueDark
 import com.devstudio.forexFusion.ui.theme.blueLight
@@ -70,6 +71,7 @@ fun HomeScreen(
     Column(
         modifier = modifier
     ) {
+
 
         // top view like header of the home page
         Box(
@@ -150,11 +152,13 @@ fun HomeScreen(
 
 
         }
+
         // results row view in the home page
 
         LazyColumn(
             modifier = Modifier.weight(1f)
         ) {
+
             item {
                 Row(
                     modifier = Modifier
@@ -235,6 +239,27 @@ fun HomeScreen(
 
             items(viewModel.communityLinks.value) {
                 CommunityItemUi(item = it, viewModel = viewModel)
+            }
+
+            // Recommended Broker section
+            item {
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 0.dp, start = 18.dp, end = 18.dp, bottom = 8.dp)
+                        .graphicsLayer {
+                            alpha = 0.8f
+                        },
+                    text = "Recommended Brokers",
+                    color = MaterialTheme.colorScheme.onBackground,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = MaterialTheme.typography.labelLarge.fontSize,
+                    fontFamily = app_font
+                )
+            }
+
+            items(viewModel.brokerLinks.value) {
+                BrokerLinkItemView(item = it, viewModel = viewModel)
             }
 
             item { Spacer(modifier = Modifier.height(10.dp)) }

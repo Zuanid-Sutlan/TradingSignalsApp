@@ -10,12 +10,14 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devstudio.forexFusion.data.firebase.repository.BrokerRepository
 import com.devstudio.forexFusion.data.firebase.repository.CommunityRepository
 import com.devstudio.forexFusion.data.firebase.repository.CryptoRepository
 import com.devstudio.forexFusion.data.firebase.repository.EventRepository
 import com.devstudio.forexFusion.data.firebase.repository.ForexRepository
 import com.devstudio.forexFusion.data.firebase.repository.NotificationRepository
 import com.devstudio.forexFusion.data.firebase.repository.ResultRepository
+import com.devstudio.forexFusion.data.model.BrokerLink
 import com.devstudio.forexFusion.data.model.CommunityLink
 import com.devstudio.forexFusion.data.model.EventSignal
 import com.devstudio.forexFusion.data.model.MessageBar
@@ -45,6 +47,7 @@ class MainViewModel : ViewModel() {
     private val eventRepository = EventRepository()
     private val resultRepository = ResultRepository()
     private val communityRepository = CommunityRepository()
+    private val brokerRepository = BrokerRepository()
     private val notificationRepository = NotificationRepository()
 
 
@@ -87,6 +90,8 @@ class MainViewModel : ViewModel() {
         getCommunityLinks()
         // get all the results from the firebase realtime database
         getResults()
+        // get all the broker links from the firebase realtime database
+        getBrokerLinks()
         // get all the notifications from the firebase realtime database
 //        getNotifications()
 
@@ -192,6 +197,9 @@ class MainViewModel : ViewModel() {
     private val _result = mutableStateOf<List<ResultSignal>>(emptyList())
     val results: State<List<ResultSignal>> = _result
 
+    private val _brokerLinks = mutableStateOf<List<BrokerLink>>(emptyList())
+    val brokerLinks: State<List<BrokerLink>> = _brokerLinks
+
 
     /**
     crypto signals CRUD operations
@@ -293,6 +301,27 @@ class MainViewModel : ViewModel() {
             resultRepository.get(
                 onSuccess = {
                     _result.value = it
+                },
+                onFailure = {
+                    setUpSnackBar(
+                        state = true,
+                        message = MessageBar(
+                            text = it.message ?: "Something went wrong",
+                            icon = Icons.Rounded.Error,
+                            color = Color.Red
+                        )
+                    )
+                }
+            )
+        }
+    }
+
+    /** Broker link CRUD operation */
+    private fun getBrokerLinks() {
+        viewModelScope.launch {
+            brokerRepository.get(
+                onSuccess = {
+                    _brokerLinks.value = it
                 },
                 onFailure = {
                     setUpSnackBar(

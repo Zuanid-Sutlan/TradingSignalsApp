@@ -14,6 +14,6 @@ sealed class FirebaseNodes(val node: String) {
 
     data object Notification : FirebaseNodes("notification")
 
-
+    data object Broker : FirebaseNodes("broker")
 
 }

@@ -22,7 +22,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -56,7 +59,13 @@ fun CustomBottomBar(viewModel: MainViewModel, navController: NavHostController) 
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(blueDark, RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
+                .background(blueDark, RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+                .clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp))
+                .clipToBounds()
+                .graphicsLayer {
+                    shape = RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)
+                    clip = true
+                },
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
