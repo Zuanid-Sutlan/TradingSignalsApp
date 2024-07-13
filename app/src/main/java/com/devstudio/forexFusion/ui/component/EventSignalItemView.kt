@@ -218,7 +218,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                     )
                 }
 
-                // time frame
+                // time frame or take profit for different scenario
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -227,14 +227,14 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "Time Frame",
+                        text = if (item.takeProfit.isNotEmpty()) "Take Profit" else "Time Frame",
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font
                     )
 
                     Text(
-                        text = "${item.timeFrame} min",
+                        text = if (item.takeProfit.isNotEmpty()) item.takeProfit else "${item.timeFrame} min",
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font
@@ -251,21 +251,21 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = if (item.mtgTime.isEmpty()) "N/A" else "MTG Reversal ",
+                        text = if (item.takeProfit.isEmpty()) if (item.mtgTime.isEmpty()) "-- --" else "MTG Reversal " else "Stop Loss",
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font
                     )
 
                     Text(
-                        text = if (item.mtgTime.isEmpty()) "-- --" else "${item.timeFrame} min",
+                        text = if (item.takeProfit.isEmpty()) if (item.mtgTime.isEmpty()) "-- --" else "${item.timeFrame} min" else "",
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font
                     )
 
                     Text(
-                        text = if (item.mtgTime.isEmpty()) "-- --" else item.mtgNeed,
+                        text = if (item.takeProfit.isEmpty()) if (item.mtgTime.isEmpty()) "-- --" else item.mtgNeed else item.stopLoss,
                         color = MaterialTheme.colorScheme.onBackground,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font

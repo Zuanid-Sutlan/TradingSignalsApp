@@ -21,7 +21,7 @@ fun EventSignalScreen(viewModel: MainViewModel) {
         LazyColumn(
             modifier = Modifier.weight(1f)
         ){
-            items(viewModel.eventSignals.value){
+            items(viewModel.eventSignals.value.reversed()){
                 EventSignalItemView(item = it)
             }
         }
