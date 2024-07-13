@@ -18,6 +18,7 @@ firebaseAuth = "23.0.0"
 firebaseMessaging = "24.0.0"
 runtimeLivedata = "1.6.8"
 firebaseDatabase = "21.0.0"
+firebaseAnalytics = "22.0.2"
 
 
 [libraries]
@@ -44,6 +45,7 @@ play-services-auth = { module = "com.google.android.gms:play-services-auth", ver
 firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

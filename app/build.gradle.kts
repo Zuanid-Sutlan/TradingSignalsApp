@@ -66,7 +66,8 @@ dependencies {
     implementation(platform(libs.firebase.bom))     // firebase bom
     implementation(libs.firebase.messaging)     // firebase cloud messaging / push notification
     implementation(libs.androidx.runtime.livedata)   // live data
-    implementation(libs.firebase.database)    // firebase realtime database
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.analytics)    // firebase realtime database
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
