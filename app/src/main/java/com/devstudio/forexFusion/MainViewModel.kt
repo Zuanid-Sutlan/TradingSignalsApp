@@ -79,6 +79,7 @@ class MainViewModel : ViewModel() {
 //        observeConnectivity(AppClass.context)
 //        _authState.value = authRepository.auth.currentUser != null
 
+        viewModelScope.launch {
 
         // get all the crypto signals from the firebase realtime database
         getCryptoSignals()
@@ -94,7 +95,7 @@ class MainViewModel : ViewModel() {
         getBrokerLinks()
         // get all the notifications from the firebase realtime database
 //        getNotifications()
-
+        }
     }
 
     val firebaseUser = _authRepository.auth.currentUser
