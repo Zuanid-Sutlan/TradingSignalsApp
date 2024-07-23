@@ -6,6 +6,8 @@ import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -30,7 +32,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CircularProgressMeter(
     canvasSize: Dp = 300.dp,
-    indicatorValue: Number = 0,
+    indicatorValue: Int = 0,
     maxIndicatorValue: Int = 100,
     backgroundIndicatorColor: Color = Color.White.copy(alpha = 0.1f),
     backgroundIndicatorStrokeWidth: Float = 55f,
