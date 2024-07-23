@@ -4,7 +4,6 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,7 +12,6 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,7 +31,6 @@ import com.devstudio.forexFusion.ui.theme.greenDark
 import com.devstudio.forexFusion.ui.theme.greenLight
 import com.devstudio.forexFusion.ui.theme.redDark
 import com.devstudio.forexFusion.ui.theme.redLight
-import kotlinx.coroutines.delay
 
 @Composable
 fun ResultsScreen(viewModel: MainViewModel) {
@@ -106,7 +103,7 @@ fun ResultsScreen(viewModel: MainViewModel) {
                 ) {
                     CircularProgressMeter(
 //                canvasSize = 150.dp,
-                        indicatorValue = progress,
+                        indicatorValue = if (viewModel.results.value.isNotEmpty()) progress else 0, // TODO: working on it
                         maxIndicatorValue = 100,
                         foregroundIndicatorColor = animateColor.value,
 //                backgroundIndicatorStrokeWidth = 10f,
