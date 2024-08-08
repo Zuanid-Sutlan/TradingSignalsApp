@@ -4,7 +4,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -13,10 +12,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
@@ -29,7 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -39,10 +35,10 @@ import androidx.navigation.NavHostController
 import com.devstudio.forexFusion.MainViewModel
 import com.devstudio.forexFusion.R
 import com.devstudio.forexFusion.data.model.MessageBar
+import com.devstudio.forexFusion.ui.component.CustomButton
+import com.devstudio.forexFusion.ui.component.GoogleButton
 import com.devstudio.forexFusion.ui.dialogs.LoginDialog
 import com.devstudio.forexFusion.ui.dialogs.RegisterDialog
-import com.devstudio.forexFusion.ui.component.GoogleButton
-import com.devstudio.forexFusion.ui.component.CustomButton
 import com.devstudio.forexFusion.ui.navigation.HomeScreen
 import com.devstudio.forexFusion.ui.navigation.WelcomeScreen
 import com.devstudio.forexFusion.ui.theme.app_font
@@ -51,6 +47,7 @@ import com.devstudio.forexFusion.ui.theme.greenLight
 import com.devstudio.forexFusion.ui.theme.primaryGradient
 import com.devstudio.forexFusion.ui.theme.redLight
 import com.devstudio.forexFusion.ui.utils.Prefs
+import com.devstudio.forexFusion.ui.utils.Utils
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 
@@ -197,7 +194,11 @@ fun WelcomeScreen(viewModel: MainViewModel, navController: NavHostController) {
 
             Spacer(modifier = Modifier.height(18.dp))
 
-            TextButton(onClick = { /*TODO*/ }) {
+            TextButton(
+                onClick = {
+                    Utils.openWhatsAppDeveloper(context)
+                }
+            ) {
                 Text(
                     text = "Contact Us",
                     color = Color.White,

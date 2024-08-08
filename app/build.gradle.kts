@@ -98,6 +98,9 @@ dependencies {
     // coil for image loading
     implementation("io.coil-kt:coil-compose:2.6.0")
 
+    // coil for svg image format
+    implementation("io.coil-kt:coil-svg:2.6.0")
+
     // OneSignal for notification
     implementation(libs.onesignal)
 

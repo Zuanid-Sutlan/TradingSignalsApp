@@ -29,14 +29,25 @@ object Utils {
         context.startActivity(Intent.createChooser(emailIntent, "Send Feedback"))
     }
 
-    fun openWhatsApp(context: Context) {
+    fun openWhatsAppDeveloper(context: Context) {
         val phoneNumber = "03474293781" // Replace with your phone number
         val uri = Uri.parse("https://wa.me/$phoneNumber")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         try {
             context.startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(context, "WhatsApp is not installed.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun openWhatsAppTrader(context: Context){
+        val phoneNumber = "03091737704" // Replace with your phone number
+        val uri = Uri.parse("https://wa.me/$phoneNumber")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            context.startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
         }
     }
 

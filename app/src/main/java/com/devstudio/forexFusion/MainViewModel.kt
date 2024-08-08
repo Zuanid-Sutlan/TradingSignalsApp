@@ -109,6 +109,13 @@ class MainViewModel : ViewModel() {
         _changeTheme.value = theme
     }
 
+    // disable drawer gesture on other screens
+    private var _disableDrawerGesture = mutableStateOf(true)
+    var drawerGesture: State<Boolean> = _disableDrawerGesture
+    fun drawerGestureState(state: Boolean) {
+        _disableDrawerGesture.value = state
+    }
+
     // for app bar title
     val appBarTitle = mutableStateOf("")
 

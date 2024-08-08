@@ -48,37 +48,58 @@ fun NavigationGraph(
     NavHost(navController, startDestination = SplashScreen) {
 
         composable<SplashScreen> {
-            viewModel.setAppBarTitle("")
+            viewModel.apply {
+                setAppBarTitle("")
+                drawerGestureState(false)
+            }
             SplashScreen(navController = navController, viewModel = viewModel)
         }
 
         composable<WelcomeScreen> {
-            viewModel.setAppBarTitle("")
+            viewModel.apply {
+                setAppBarTitle("")
+                drawerGestureState(false)
+            }
             WelcomeScreen(navController = navController, viewModel = viewModel)
         }
 
         composable<HomeScreen> {
-            viewModel.setAppBarTitle("Forex Fusion")
+            viewModel.apply {
+                setAppBarTitle("Forex Fusion")
+                drawerGestureState(true)
+            }
             HomeScreen(viewModel = viewModel, navController = navController)
         }
 
         composable<CryptoScreen> {
-            viewModel.setAppBarTitle("Crypto Signals")
+            viewModel.apply {
+                setAppBarTitle("Crypto Signals")
+                drawerGestureState(false)
+            }
             CryptoSignalScreen(viewModel = viewModel)
         }
 
         composable<ForexScreen> {
-            viewModel.setAppBarTitle("Forex Signals")
+            viewModel.apply {
+                setAppBarTitle("Forex Signals")
+                drawerGestureState(false)
+            }
             ForexSignalScreen(viewModel = viewModel)
         }
 
         composable<EventsScreen>{
-            viewModel.setAppBarTitle("Events")
+            viewModel.apply {
+                setAppBarTitle("Events")
+                drawerGestureState(false)
+            }
             EventSignalScreen(viewModel = viewModel)
         }
 
         composable<ResultScreen>{
-            viewModel.setAppBarTitle("Results")
+            viewModel.apply {
+                setAppBarTitle("Results")
+                drawerGestureState(false)
+            }
             ResultsScreen(viewModel = viewModel)
         }
 

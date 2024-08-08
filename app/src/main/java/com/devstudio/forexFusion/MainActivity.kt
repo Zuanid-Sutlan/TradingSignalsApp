@@ -120,6 +120,7 @@ class MainActivity : ComponentActivity() {
 
                 ModalNavigationDrawer(
                     modifier = Modifier,
+                    gesturesEnabled = viewModel.drawerGesture.value,
                     drawerContent = {
                         DrawerScreen(
                             viewModel = viewModel,

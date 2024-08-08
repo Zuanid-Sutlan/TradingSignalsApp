@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
+import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.devstudio.forexFusion.ui.theme.blueLight
 
@@ -27,6 +28,7 @@ fun ImageLoadFromUrl(url: String, modifier: Modifier = Modifier) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(url)
+            .decoderFactory(SvgDecoder.Factory())
             .build()
     )
 
