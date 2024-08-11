@@ -136,7 +136,7 @@ fun DrawerScreen(
 
         DrawerItemWithIcon(
             itemText = "Contact Us",
-            onClick = { Utils.openWhatsAppDeveloper(context) },
+            onClick = { Utils.openWhatsAppTrader(context) },
             icon = Icons.Outlined.Whatsapp
         )
 

@@ -57,6 +57,7 @@ import com.devstudio.forexFusion.ui.theme.TradingSignalsAppTheme
 import com.devstudio.forexFusion.ui.theme.app_font
 import com.devstudio.forexFusion.ui.theme.darkCardBackground
 import com.devstudio.forexFusion.ui.theme.lightCardBackground
+import com.devstudio.forexFusion.ui.utils.Utils
 import com.onesignal.OneSignal
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -75,6 +76,8 @@ class MainActivity : ComponentActivity() {
                 viewModel.splashScreenIsLoading.value
             }
         }*/
+
+        Utils.statusBarTextColorDark(this)
 
         setContent {
 
@@ -110,12 +113,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
 
-
-
-
-
-
-
             TradingSignalsAppTheme(darkTheme = viewModel.theme.value) {
 
                 ModalNavigationDrawer(
@@ -135,7 +132,8 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxSize()
                                 .statusBarsPadding()
-                                .navigationBarsPadding(),
+                                .navigationBarsPadding()
+                            ,
                             topBar = {
                                 CustomTopAppBar(
                                     viewModel = viewModel,

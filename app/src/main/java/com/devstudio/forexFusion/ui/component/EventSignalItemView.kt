@@ -7,9 +7,11 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -28,12 +30,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.devstudio.forexFusion.data.model.EventSignal
 import com.devstudio.forexFusion.ui.theme.app_font
+import com.devstudio.forexFusion.ui.theme.green
 import com.devstudio.forexFusion.ui.theme.greenLight
+import com.devstudio.forexFusion.ui.theme.redBright
 import com.devstudio.forexFusion.ui.theme.redLight
+import com.devstudio.forexFusion.ui.utils.Prefs
 import java.util.Locale
 
 @Composable
@@ -46,7 +53,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
     )
 
     val accuracyColor = animateColorAsState(
-        targetValue = if (item.accuracy.toInt() > 40) greenLight else redLight,
+        targetValue = if (item.accuracy.toInt() > 40) if (Prefs.isDarkTheme) greenLight else green else redLight,
         label = "",
         animationSpec = tween(
             durationMillis = 1000,
@@ -72,7 +79,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
             expandedState = !expandedState
         }
     ) {
-        Column(
+        /*Column(
             modifier = Modifier
                 .padding(padding)
         ) {
@@ -88,11 +95,6 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                 ) {
                     ImageLoadFromUrl(
                         modifier = Modifier,
-                        /*.border(
-                            width = 1.dp,
-                            color = MaterialTheme.colorScheme.onBackground,
-                            shape = RoundedCornerShape(10.dp)
-                        )*/
                         url = item.imageUrl,
                     )
 
@@ -161,6 +163,110 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                     contentDescription = "Drop-Down Arrow"
                 )
             }
+        }*/
+
+        Column(
+            modifier = Modifier
+                .padding(start = padding, end = padding, top = padding)
+        ) {
+
+            // pair name, icon and trade date
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row {
+                    ImageLoadFromUrl(
+                        modifier = Modifier,
+                        url = item.imageUrl
+                    )
+
+                    Column(
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .align(Alignment.CenterVertically)
+                            .padding(start = 16.dp),
+                        horizontalAlignment = Alignment.Start,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            modifier = Modifier.padding(start = 0.dp),
+                            text = item.pairName.uppercase(Locale.ROOT),
+                            color = MaterialTheme.colorScheme.onBackground,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = app_font,
+                            fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                        )
+                        // date
+                        Text(
+                            modifier = Modifier
+                                .padding(0.dp),
+                            text = item.date,
+                            fontFamily = app_font,
+                            color = if (isSystemInDarkTheme()) redBright else Color.Red,
+                            fontSize = MaterialTheme.typography.labelSmall.fontSize,
+                        )
+                    }
+                }
+
+
+                // the arrow icon for switch the state expandable and un-expandable state
+                Icon(
+                    modifier = Modifier
+                        .rotate(rotationState)
+                        .clickable(
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() },
+                            onClick = { expandedState = !expandedState }
+                        ),
+                    imageVector = Icons.Outlined.KeyboardArrowDown,
+                    contentDescription = "Drop-Down Arrow"
+                )
+
+            }
+
+
+            // entry price and trade type long / short
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 4.dp, bottom = 6.dp),
+                horizontalAlignment = Alignment.Start,
+                verticalArrangement = Arrangement.Top
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = Modifier,
+                        text = "Entry Time",
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontFamily = app_font,
+                        fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                    )
+
+                    Text(
+                        modifier = Modifier,
+                        text = item.entryTime,
+                        color = MaterialTheme.colorScheme.onBackground,
+                        fontFamily = app_font,
+                        fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                    )
+
+                    Text(
+                        modifier = Modifier,
+                        text = item.direction,
+                        fontFamily = app_font,
+                        color = if (item.direction == "Long" || item.direction == "long" || item.direction == "LONG") if (Prefs.isDarkTheme) Color.Green else green else Color.Red,
+                        fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                    )
+                }
+            }
         }
 
         if (expandedState) {
@@ -168,7 +274,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 12.dp, end = 12.dp)
+                    .padding(start = padding, end = padding)
                     .wrapContentHeight()
                     .padding(top = 0.dp, bottom = 16.dp)
             ) {
@@ -180,7 +286,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Capital   ${item.capital}%",
+                        text = "Capital ${item.capital}%",
                         color = redLight,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                         fontFamily = app_font
@@ -199,7 +305,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 28.dp, end = 28.dp, top = 8.dp, bottom = 4.dp),
+                        .padding(0.dp/*start = 28.dp, end = 28.dp, top = 8.dp, bottom = 4.dp*/),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -222,7 +328,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 28.dp, end = 28.dp, top = 0.dp, bottom = 4.dp),
+                        .padding(0.dp/*start = 28.dp, end = 28.dp, top = 0.dp, bottom = 4.dp*/),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -246,7 +352,7 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(start = 28.dp, end = 28.dp, top = 0.dp, bottom = 4.dp),
+                        .padding(0.dp/*start = 28.dp, end = 28.dp, top = 0.dp, bottom = 4.dp*/),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -271,7 +377,6 @@ fun EventSignalItemView(item: EventSignal, padding: Dp = 16.dp) {
                         fontFamily = app_font
                     )
                 }
-
             }
         }
     }

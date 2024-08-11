@@ -10,4 +10,5 @@
 
     <color name="splash_bg">#FF0066FF</color>
     <color name="blue_light">#FF0066FF</color>
+    <color name="blue_dark">#FF003380</color>
 </resources>

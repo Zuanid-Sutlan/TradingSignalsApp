@@ -1,13 +1,14 @@
 package com.devstudio.forexFusion.ui.utils
 
-import android.util.Patterns
-import androidx.compose.ui.geometry.Offset
-import kotlin.math.cos
-import kotlin.math.sin
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.Patterns
 import android.widget.Toast
+import androidx.compose.ui.geometry.Offset
+import kotlin.math.cos
+import kotlin.math.sin
 
 object Utils {
 
@@ -41,7 +42,7 @@ object Utils {
     }
 
     fun openWhatsAppTrader(context: Context){
-        val phoneNumber = "03091737704" // Replace with your phone number
+        val phoneNumber = "03436117105" // Replace with your phone number
         val uri = Uri.parse("https://wa.me/$phoneNumber")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         try {
@@ -49,6 +50,31 @@ object Utils {
         } catch (e: Exception) {
             Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    // format coin price to as needed decimal points
+    fun formatDouble(value: Double): String {
+        return /*if (value >= 1000){
+        String.format("%.2f", value)
+    }else if (value >= 100){
+        String.format("%.2f", value)
+    }else */if (value > 9.99){
+            String.format("%.2f", value)
+        }else if (value > 0.99){
+            String.format("%.3f", value)
+        }else if (value > 0.01){
+            String.format("%.4f", value)
+        } else if (value > 0.0001){
+            String.format("%.5f", value)
+        }else {
+            String.format("%.6f", value)
+        }
+    }
+
+    // change status bar text color
+    fun statusBarTextColorDark(activity: Activity){
+        // For light status bar text
+//        activity.window.decorView.se;
     }
 
     fun openAppInPlayStore(context: Context) {

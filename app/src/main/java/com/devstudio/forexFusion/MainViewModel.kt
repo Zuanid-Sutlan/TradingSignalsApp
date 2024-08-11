@@ -123,6 +123,8 @@ class MainViewModel : ViewModel() {
         appBarTitle.value = title
     }
 
+
+
     // splash screen loading
     private var _isLoading = mutableStateOf(true)
     var splashScreenIsLoading: State<Boolean> = _isLoading

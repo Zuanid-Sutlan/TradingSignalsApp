@@ -1,11 +1,12 @@
 package com.devstudio.forexFusion
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
+import com.devstudio.forexFusion.ui.utils.Utils
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.onesignal.OneSignal
-import com.onesignal.debug.LogLevel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

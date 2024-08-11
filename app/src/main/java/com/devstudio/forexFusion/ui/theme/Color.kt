@@ -34,6 +34,10 @@ val gradientBlue = listOf(blueLight, blueDark)
 val gradientGreen = listOf(greenLight, greenDark)
 val gradientRed = listOf(redLight, redDark)
 
+
+val green = Color(0xFF119911)
+val redBright = Color(0xFFFF3B00)
+
 //val (start, end) = calculateGradientOffsets(1000f, 1000f, 45f)
 
 val endOffset = Offset(Float.POSITIVE_INFINITY, 0f)
