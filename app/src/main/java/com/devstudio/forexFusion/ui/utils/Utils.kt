@@ -22,7 +22,7 @@ object Utils {
     fun sendFeedback(context: Context) {
         val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:") // Only email apps should handle this
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("sultan.devstudio@gmail.com"))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf("forexfusion.help@gmail.com"))
             putExtra(Intent.EXTRA_SUBJECT, "Feedback of Forex Fusion")
             putExtra(Intent.EXTRA_TEXT, "Please write your feedback here.")
         }
