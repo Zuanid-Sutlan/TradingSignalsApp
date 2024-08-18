@@ -4,13 +4,11 @@ import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -41,12 +39,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.devstudio.forexFusion.data.model.ForexSignal
 import com.devstudio.forexFusion.ui.theme.app_font
-import com.devstudio.forexFusion.ui.theme.blueDark
 import com.devstudio.forexFusion.ui.theme.blueLight
 import com.devstudio.forexFusion.ui.theme.green
-import com.devstudio.forexFusion.ui.theme.greenLight
 import com.devstudio.forexFusion.ui.theme.redBright
 import com.devstudio.forexFusion.ui.theme.redLight
+import com.devstudio.forexFusion.ui.utils.Prefs
 import java.util.Locale
 
 @Composable
@@ -250,7 +247,7 @@ fun ForexSignalItemView(
                         modifier = Modifier,
                         text = item.type,
                         fontFamily = app_font,
-                        color = if (item.type == "Long" || item.type == "long" || item.type == "LONG") if (isSystemInDarkTheme()) Color.Green else green else Color.Red,
+                        color = if (item.type == "Long" || item.type == "long" || item.type == "LONG") if (Prefs.isDarkTheme) Color.Green else green else Color.Red,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                     )
                 }

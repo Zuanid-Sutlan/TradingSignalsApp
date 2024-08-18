@@ -30,7 +30,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.devstudio.forexFusion.MainViewModel
 import com.devstudio.forexFusion.R
@@ -150,6 +152,18 @@ fun WelcomeScreen(viewModel: MainViewModel, navController: NavHostController) {
                     .wrapContentSize(),
                 painter = painterResource(id = R.drawable.ic_app_logo),
                 contentDescription = null
+            )
+
+//            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                modifier = Modifier.fillMaxWidth().wrapContentHeight(),
+                text = "Welcome in Fusion Army",
+                fontFamily = app_font,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.White,
+                textAlign = TextAlign.Center
             )
 
             Spacer(modifier = Modifier.height(16.dp))

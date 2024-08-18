@@ -131,7 +131,7 @@ fun SplashScreen(
         Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 10.dp)
+                .padding(bottom = 40.dp)
                 .navigationBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -143,7 +143,7 @@ fun SplashScreen(
                 fontFamily = app_font
             )
             Text(
-                text = "DevStudio",
+                text = "VAS PRODUCTION",
                 color = Color.White,
                 fontSize = MaterialTheme.typography.titleMedium.fontSize,
                 fontWeight = FontWeight.Bold,

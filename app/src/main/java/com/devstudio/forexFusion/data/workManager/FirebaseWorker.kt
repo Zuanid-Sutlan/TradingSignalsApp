@@ -13,7 +13,6 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.devstudio.forexFusion.AppClass
-import com.devstudio.forexFusion.R
 import com.devstudio.forexFusion.data.firebase.dbNodes.FirebaseNodes
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot

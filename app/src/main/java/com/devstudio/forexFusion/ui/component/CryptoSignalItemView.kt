@@ -43,6 +43,7 @@ import com.devstudio.forexFusion.ui.theme.blueLight
 import com.devstudio.forexFusion.ui.theme.green
 import com.devstudio.forexFusion.ui.theme.redBright
 import com.devstudio.forexFusion.ui.theme.redLight
+import com.devstudio.forexFusion.ui.utils.Prefs
 import java.util.Locale
 
 @Composable
@@ -261,7 +262,7 @@ fun CryptoSignalItemView(
                         modifier = Modifier,
                         text = item.type,
                         fontFamily = app_font,
-                        color = if (item.type == "Long" || item.type == "long" || item.type == "LONG") if (isSystemInDarkTheme()) Color.Green else green else Color.Red,
+                        color = if (item.type == "Long" || item.type == "long" || item.type == "LONG") if (Prefs.isDarkTheme) Color.Green else green else Color.Red,
                         fontSize = MaterialTheme.typography.titleMedium.fontSize,
                     )
                 }

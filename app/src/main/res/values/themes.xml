@@ -12,7 +12,8 @@
 
     <style name="Theme.TradingSignalsApp" parent="android:Theme.Material.Light.NoActionBar">
 <!--        <item name="android:windowDisablePreview">true</item>-->
-        <item name="android:windowBackground">@drawable/splash_bg</item>
+<!--        <item name="android:windowBackground">@drawable/splash_bg</item>-->
+        <item name="android:windowBackground">@color/splash_bg</item>
         <item name="android:navigationBarColor">@color/blue_dark</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
 
